@@ -40,6 +40,8 @@ var maxIndex = 0
 showInfo()
 
 
+
+
 newMemberAddBtn.addEventListener('click', ()=> {
     isEdit = false
     submitBtn.innerHTML = "Submit"
@@ -55,6 +57,25 @@ crossBtn.addEventListener('click', ()=>{
     popupForm.classList.remove('active')
     form.reset()
 })
+
+document.getElementById("existingUserBtn").addEventListener("click", function() {
+    document.getElementById("userSelection").style.display = "none";
+    document.getElementById("image").style.display = "none";
+    document.getElementById("crudApp").style.display = "block";
+    document.querySelector(".container").style.display = "block"; // Fixed selector
+    document.getElementById("titleContainer").style.display = "none";
+    // Retrieve and display student details
+    document.querySelector(".userInfo").innerHTML = showInfo(); 
+
+    // Ensure navigation buttons are displayed
+    displayIndexBtn();
+});
+
+        document.getElementById("goBackBtn").addEventListener("click", function() {
+            document.getElementById("userSelection").style.display = "block";
+            document.getElementById("crudApp").style.display = "none";
+        
+        });
 
 
 function preLoadCalculations(){
@@ -118,6 +139,26 @@ function highlightIndexBtn(){
 }
 
 
+
+function validateForm() {
+    
+    let Phone = document.getElementById("phone").value;
+    let email = document.getElementById("email").value;
+    
+   
+    let mobilePattern = /^[0-9]{10}$/;
+
+    let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (!mobilePattern.test(Phone)) {
+        return false;
+    }
+
+    if (!emailPattern.test(email)) {
+    return false;
+    }
+   
+    }
 
 
 function showInfo(){
@@ -443,4 +484,6 @@ filterData.addEventListener("input", ()=> {
     currentIndex = 1
     startIndex = 1
     displayIndexBtn()
+
+
 })
